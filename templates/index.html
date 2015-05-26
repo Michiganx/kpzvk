@@ -1,0 +1,65 @@
+{% load backend_utils %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" href="{% static "styles/site.css" %}" />
+    <title></title>
+</head>
+<body>
+
+      {% if user.is_authenticated %}
+          You are logged in as <code>{{ user.username }}</code>!
+           <br>
+          <br>
+
+        <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 api-viewer" route="http://localhost:60200/api">
+                <p>
+                    Довіреності
+                    <table class="table table-bordered table-hover api-table" address="/poas">
+                    </table>
+                </p>
+
+                <p>
+                    Нотаріуси
+                    <table class="table table-bordered table-hover api-table" address="/notaries">
+                    </table>
+                </p>
+                <p>
+                    Суб'єкти
+                    <table class="table table-bordered table-hover api-table" address="/subjects">
+                    </table>
+                </p>
+                <p>
+                    Довірителі
+                    <table class="table table-bordered table-hover api-table" address="/people">
+                    </table>
+                </p> j
+            </div>
+        </div>
+    </div>
+
+
+    <script src= "{% static  "js/jquery-1.11.2.min.js"%}"></script>
+    <script src= "{% static "js/view.js" %}"  ></script>
+
+
+          <form class="disconnect-form col-md-2" action="{% url  'social:disconnect_individual' 'vk-oauth2'  987 %}" method="post">{% csrf_token %}
+                 <input type="submit" value="выйты">
+            </form>
+
+          {% else %}
+
+          <a href="{% url 'social:begin' 'vk-oauth2' %}"> <img src="{% static "vk_logo.png" %}" title="Войти через ВК"></a>
+      {% endif %}
+
+<pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
+
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+.api-viewer {
+    margin-top: 20px;
+    padding-top: 15px;
+    background-color: #e6e6e6;
+}
+
+    .api-viewer > table {
+        background-color: white;
+    }
+
+        .api-viewer > table > thead {
+            background-color:#d3d1d1;
+            font-weight:600;
+        }
+
+input {
+    width:100%;
+}
